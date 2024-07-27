@@ -1,0 +1,152 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+.flex {
+	display: flex;
+	position: relative;
+	gap: .5rem
+}
+
+.flex.column {
+	flex-direction: column;
+}
+
+.grid {
+	display: grid;
+	position: relative;
+}
+
+.columns {
+	display: grid;
+	grid-template-columns: repeat(var(--columns, 2), 1fr);
+	justify-content: center;
+	align-items: center;
+}
+
+.center {
+	justify-content: center;
+	align-items: center;
+}
+
+.video-container {
+	display: flex;
+	aspect-ratio: 4 / 3;
+	width: 70%;
+	object-fit: cover;
+	outline: var(--outline-width, 2px) solid var(--outline-colour, #888);
+	transition: outline 150ms ease-out;
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+}
+
+.video-container img {
+	position: absolute;
+	width: 100%;
+}
+
+.video-container img.hidden {
+	display: none;
+}
+
+video[data-source="local"] {
+	transform: scale(-1, 1);
+}
+
+:not([disabled]):is(button, input[type="submit"]) {
+	cursor: pointer;
+}
+
+[disabled]:is(button, input[type="submit"]) {
+	cursor: not-allowed;
+}
+
+button {
+	color: var(--fg-colour, inherit);
+	background-color: var(--bg-colour, #ddd);
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+}
+
+button::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-color: hsla(0 0% 0% / var(--layer-alpha, 0%));
+	transition: background-color 250ms ease-out;
+	will-change: background-color;
+}
+
+button:hover::after {
+	--layer-alpha: 5%;
+}
+
+button:active::after {
+	--layer-alpha: 10%;
+}
+
+button.icon-only {
+	aspect-ratio: 1 / 1;
+}
+
+button.rounded {
+	border-radius: 2rem;
+	margin-block-start: 1rem;
+}
+
+.buttons {
+	gap: 1rem
+}
+
+.loading {
+	font-size: 2rem;
+}
+
+.loading::after {
+	display: inline-block;
+	width: 2ch;
+	content: "...";
+	animation: loading-dots 3s infinite;
+}
+
+.highlight {
+	background-color: #ddd;
+	border-radius: 5px;
+	padding-inline: .25rem;
+	padding-block: .1rem
+}
+
+dialog {
+	max-width: 50ch;
+	background-color: #2c3e50;
+	color: whitesmoke;
+	border: none;
+	border-radius: 15px;
+	padding: 2rem;
+}
+
+dialog .highlight {
+	background-color: #888;
+}
+
+dialog::backdrop {
+	backdrop-filter: blur(10px);
+}
+
+@keyframes loading-dots {
+	0%   { content: "   " }
+	20%  { content: ".  " }
+	40%  { content: ".. " }
+	60%  { content: "..." }
+	70%  { content: " .." }
+	80%  { content: "  ." }
+	100% { content: "   " }
+}

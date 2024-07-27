@@ -1,0 +1,11 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+button {
+	margin: 0;
+	padding: .5rem;
+	border: none;
+}

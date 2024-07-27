@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vite App</title>
+		<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
+		<script type="module" src="/main.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<dialog data-popup></dialog>
+			<div class="columns" style="--columns: 2">
+				<div class="flex column center">
+					<div class="video-container" data-visualise="local">
+						<video autoplay playsinline muted data-source="local"></video>
+						<img src="./no-signal.webp" alt="No signal">
+					</div>
+					<div class="flex center buttons">
+						<button class="rounded icon-only" data-mic></button>
+						<button class="rounded icon-only" data-video></button>
+					</div>
+				</div>
+				<div data-slot="start">
+					<p class="loading">Loading</p>
+				</div>
+			</div>
+			<!-- <button class="rounded icon-only" data-screen><i data-feather="airplay"></i></button> -->
+		</div>
+	</body>
+	<template id="login-template">
+		<p>Enter a username to start using this app.</p>
+		<form action="login">
+			<input type="text" name="username" placeholder="Username" required minlength="3" maxlength="32">
+			<input type="submit" value="Enter">
+		</form>
+	</template>
+	<template id="call-template">
+		<p>
+			Welcome <span class="highlight" data-slot="username"></span>!
+		</p>
+		<p>Share your username with others or enter someone else's username below to place a call.</p>
+		<form action="call">
+			<input type="text" name="username" placeholder="Caller's username" required minlength="3" maxlength="32">
+			<input type="submit" value="Call">
+		</form>
+	</template>
+	<template id="call-answer-popup">
+		<p><span class="highlight" data-slot="username"></span> is calling you.</p>
+		<form method="dialog">
+				<div class="flex center buttons">
+				<button class="rounded icon-only" value="default" data-action="answer" style="--bg-colour: green; --fg-colour: white;"><i data-feather="phone-call"></i></button>
+				<button class="rounded icon-only" value="cancel" data-action="reject" style="--bg-colour: red; --fg-colour: white;"><i data-feather="phone-off"></i></button>
+			</div>
+		</form>
+	</template>
+</html>
